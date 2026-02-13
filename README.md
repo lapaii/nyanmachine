@@ -1,24 +1,32 @@
 # nyanpreter
 
-simple interpreter for the assembly language provided as part of the [Cambridge International AS & A Level Computer Science syllabus](https://www.cambridgeinternational.org/Images/636089-2024-2025-syllabus.pdf).
+the nyanpreter is a simple interpreter for the assembly language provided as part of the [Cambridge International AS & A Level Computer Science syllabus](https://www.cambridgeinternational.org/Images/636089-2024-2025-syllabus.pdf).
 
-the interpreter only makes one general purpose register (the accumulator) available for use. this is because in exams on the course, it is assumed that the accumulator is the only register available for use.
+the nyanpreter only provides one general-purpose register (the accumulator). this is because in exam scenarios, the accumulator is the only available register.
 
 ## usage
 
+```bash
 go build .
-./nyanpreter --input \<file\>
+./nyanpreter --input input.nyan
+```
 
-## list of instructions
+## instruction set
 
-this is a list of instructions currently implemented
+Currently implemented instructions:
 
-| operand | operator | explanation                                                 |
-|---------|----------|-------------------------------------------------------------|
-| LDM     | #n       | load n into acc                                             |
-| ADD     | #n/Bn/&n | add n to the acc                                            |
-| OUT     |          | output to stdout the value of the acc as an ascii character |
+| operand | operator | explanation                                                  |
+|---------|----------|--------------------------------------------------------------|
+| LDM     | #n       | Load n into the accumulator                                  |
+| ADD     | #n/Bn/&n | Add n to the accumulator                                     |
+| OUT     |          | Output the accumulator value to stdout as an ASCII character |
 
-\# denotes a denary number  
-B denotes a binary number  
-& denotes a hex number
+- `#` denotes a denary (decimal) number
+- `B` denotes a binary number
+- `&` denotes a hexadecimal number
+
+## future plans
+
+- [ ] implement all instructions as specified in the syllabus
+- [ ] implement support for labels, for use with labeling data and instructions
+- [ ] possibly allow user to "build" program to an intermediate pseudo-machine code file that can then be run by the interpreter
