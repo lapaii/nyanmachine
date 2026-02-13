@@ -19,6 +19,6 @@ this is a list of instructions currently implemented
 | ADD     | #n/Bn/&n | add n to the acc                                            |
 | OUT     |          | output to stdout the value of the acc as an ascii character |
 
-\# denotes a denary number
-B denotes a binary number
+\# denotes a denary number  
+B denotes a binary number  
 & denotes a hex number
