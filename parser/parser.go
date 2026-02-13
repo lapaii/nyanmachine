@@ -1,8 +1,10 @@
 package parser
 
 import (
+	"fmt"
 	"nyanpreter/instructions"
 	"regexp"
+	"slices"
 	"strings"
 )
 
@@ -25,8 +27,15 @@ func Parse(contents []string) ([]Instruction, error) {
 	parsedInstructions := []Instruction{}
 
 	for idx, line := range contents {
-		// remove comments
+		// remove comments, clear any whitespace and force uppercase
 		cleansedLine := commentRegex.ReplaceAllString(line, "")
+		cleansedLine = strings.TrimSpace(cleansedLine)
+		cleansedLine = strings.ToUpper(cleansedLine)
+
+		// if line is blank, skip
+		if cleansedLine == "" {
+			continue
+		}
 
 		parts := strings.Split(cleansedLine, " ")
 
@@ -37,17 +46,37 @@ func Parse(contents []string) ([]Instruction, error) {
 			return []Instruction{}, err
 		}
 
-		// parse operator
-		parsedOperator, err := ParseOperator(idx, parsedOperand, parts[1])
+		// have to check here if this line has an
+		// operator or not and check if it should have one
+		parsedOperator := ""
+		if len(parts) == 2 {
+			// parse operator
+			parsedOperator, err = ParseOperator(idx, parsedOperand, parts[1])
 
-		if err != nil {
-			return []Instruction{}, err
+			if err != nil {
+				return []Instruction{}, err
+			}
+		} else if len(parts) == 1 {
+			// if the instruction doesnt use an operator
+			if !slices.Contains(instructions.NoOperator, parsedOperand) {
+				return []Instruction{}, fmt.Errorf("instruction %d on line %d requires an operator!\n", parsedOperand, idx+1)
+			}
+		} else {
+			return []Instruction{}, fmt.Errorf("invalid syntax on line %d", idx+1)
 		}
 
 		// add parsed instruction to slice
 		parsedInstructions = append(parsedInstructions, Instruction{
 			Operand:  parsedOperand,
 			Operator: parsedOperator,
+		})
+	}
+
+	// if last instruction is not an END, add it
+	if parsedInstructions[len(parsedInstructions)-1].Operand != instructions.END {
+		parsedInstructions = append(parsedInstructions, Instruction{
+			Operand:  instructions.END,
+			Operator: "",
 		})
 	}
 

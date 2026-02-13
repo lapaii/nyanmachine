@@ -12,7 +12,7 @@ func ParseOperand(lineNum int, part string) (instructions.Operand, error) {
 	operand = instructions.InstructionSet[part]
 
 	if operand == instructions.INVALID {
-		returnError = fmt.Errorf("Invalid instruction at Line %d: %s", lineNum, part)
+		returnError = fmt.Errorf("Invalid instruction at Line %d: %s", lineNum+1, part)
 	}
 
 	return operand, returnError

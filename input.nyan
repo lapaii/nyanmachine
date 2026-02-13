@@ -1,4 +1,5 @@
-LDM #20 // load 20 into ACC
-ADD #30 // add 30 to ACC (now 50)
-ADD #40 // add 40 to ACC (now 90)
-OUT // output to stdout
+LDM #20
+ADD #30
+ADD #40
+out
+END
