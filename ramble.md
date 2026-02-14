@@ -43,7 +43,15 @@ on the second pass:
 - go through each line
 - this is where any errors in the syntax of the code will be caught and reported
 - ignore label definitions, just translate opcodes and operand definitions into binary
-- (still need to decide how this will be formatted)
+- the memory layout will be created in this step, an instruction will take up 1 unit of this memory, as a struct like:
+
+```go
+type Instruction struct {
+  Operand int // will be later decoded back into instructions that are useful
+  Operator int // Numbr .
+}
+```
+
 - output binary to file
 
 assembly done!! yayy
