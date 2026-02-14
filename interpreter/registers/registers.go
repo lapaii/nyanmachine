@@ -21,3 +21,7 @@ func (register *Registers) GetAccumulator() int {
 func (register *Registers) IncrementPC() {
 	register.ProgramCounter = register.ProgramCounter + 1
 }
+
+func (register *Registers) SetProgramCounter(value int) {
+	register.ProgramCounter = value
+}

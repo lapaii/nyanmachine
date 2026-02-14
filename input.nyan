@@ -2,4 +2,5 @@ LDM #20
 ADD #30
 ADD #40
 OUT
+JMP 1
 END

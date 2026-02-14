@@ -12,4 +12,5 @@ var FunctionMap = map[instructions.Operand]func(*registers.Registers, instructio
 	instructions.LDM: memory.LDM,
 	instructions.ADD: math.ADD,
 	instructions.OUT: control.OUT,
+	instructions.JMP: control.JMP,
 }
