@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"nyanpreter/interpreter"
 	"nyanpreter/parser"
 )
 
@@ -18,9 +19,11 @@ func main() {
 		panic(err)
 	}
 
-	_, err = parser.Parse(fileContents)
+	program, err := parser.Parse(fileContents)
 
 	if err != nil {
 		panic(err)
 	}
+
+	interpreter.Interpreter(program)
 }

@@ -1,7 +1,5 @@
 package instructions
 
-type Operand int
-
 const (
 	INVALID Operand = iota
 

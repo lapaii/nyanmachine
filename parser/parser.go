@@ -8,12 +8,7 @@ import (
 	"strings"
 )
 
-type Instruction struct {
-	Operand  instructions.Operand
-	Operator string
-}
-
-func Parse(contents []string) ([]Instruction, error) {
+func Parse(contents []string) ([]instructions.Instruction, error) {
 	// go through each line
 	// clean any comments, `//` is comment sign
 	// split into operand / operator
@@ -24,13 +19,12 @@ func Parse(contents []string) ([]Instruction, error) {
 	// regex to match all characters after a // for removing comments
 	commentRegex := regexp.MustCompile(`(\/\/.*)`)
 
-	parsedInstructions := []Instruction{}
+	parsedInstructions := []instructions.Instruction{}
 
 	for idx, line := range contents {
-		// remove comments, clear any whitespace and force uppercase
+		// remove comments, clear any whitespace
 		cleansedLine := commentRegex.ReplaceAllString(line, "")
 		cleansedLine = strings.TrimSpace(cleansedLine)
-		cleansedLine = strings.ToUpper(cleansedLine)
 
 		// if line is blank, skip
 		if cleansedLine == "" {
@@ -43,30 +37,30 @@ func Parse(contents []string) ([]Instruction, error) {
 		parsedOperand, err := ParseOperand(idx, parts[0])
 
 		if err != nil {
-			return []Instruction{}, err
+			return []instructions.Instruction{}, err
 		}
 
 		// have to check here if this line has an
 		// operator or not and check if it should have one
-		parsedOperator := ""
+		var parsedOperator instructions.Operator = ""
 		if len(parts) == 2 {
 			// parse operator
 			parsedOperator, err = ParseOperator(idx, parsedOperand, parts[1])
 
 			if err != nil {
-				return []Instruction{}, err
+				return []instructions.Instruction{}, err
 			}
 		} else if len(parts) == 1 {
 			// if the instruction doesnt use an operator
 			if !slices.Contains(instructions.NoOperator, parsedOperand) {
-				return []Instruction{}, fmt.Errorf("instruction %d on line %d requires an operator!\n", parsedOperand, idx+1)
+				return []instructions.Instruction{}, fmt.Errorf("instruction %d on line %d requires an operator!\n", parsedOperand, idx+1)
 			}
 		} else {
-			return []Instruction{}, fmt.Errorf("invalid syntax on line %d", idx+1)
+			return []instructions.Instruction{}, fmt.Errorf("invalid syntax on line %d", idx+1)
 		}
 
 		// add parsed instruction to slice
-		parsedInstructions = append(parsedInstructions, Instruction{
+		parsedInstructions = append(parsedInstructions, instructions.Instruction{
 			Operand:  parsedOperand,
 			Operator: parsedOperator,
 		})
@@ -74,7 +68,7 @@ func Parse(contents []string) ([]Instruction, error) {
 
 	// if last instruction is not an END, add it
 	if parsedInstructions[len(parsedInstructions)-1].Operand != instructions.END {
-		parsedInstructions = append(parsedInstructions, Instruction{
+		parsedInstructions = append(parsedInstructions, instructions.Instruction{
 			Operand:  instructions.END,
 			Operator: "",
 		})

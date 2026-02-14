@@ -6,14 +6,14 @@ import (
 	"slices"
 )
 
-func ParseOperator(lineNum int, instruction instructions.Operand, part string) (string, error) {
+func ParseOperator(lineNum int, instruction instructions.Operand, part string) (instructions.Operator, error) {
 	// check if the operator is of the right type for the instruction
 	if slices.Contains(instructions.RegisterOperator, instruction) {
 		// instruction needs a register operator
 		// is the operator either one of them?
 		if part == "ACC" || part == "IDX" {
 			// yes it is!!
-			return part, nil
+			return instructions.Operator(part), nil
 		}
 
 		return "", fmt.Errorf(
@@ -22,5 +22,5 @@ func ParseOperator(lineNum int, instruction instructions.Operand, part string) (
 		)
 	}
 
-	return part, nil
+	return instructions.Operator(part), nil
 }
