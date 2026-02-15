@@ -41,9 +41,20 @@ on the first pass i:
 on the second pass:
 
 - go through each line
-- this is where any errors in the syntax of the code will be caught and reported
-- ignore label definitions, just translate opcodes and operand definitions into binary
-- the memory layout will be created in this step, an instruction will take up 1 unit of this memory, as a struct like:
+- is instruction valid?
+  - yes:
+    - is operator valid? (some instructions dont take one or require an address etc)
+      - yes:
+        - is the operator a label?
+          - yes:
+            - using the symbol table, replace with label line and save to output
+          - no:
+            - save to output
+      - no:
+        - stop and report error to user
+  - no:
+    - stop and report error to user
+- output the assembled program to the binary format
 
 ```go
 type Instruction struct {
