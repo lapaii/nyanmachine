@@ -8,17 +8,15 @@ func FirstPass(input []string) (SymbolTable, error) {
 	symbolTable := SymbolTable{}
 
 	for idx, line := range input {
-		labelMatches := util.LabelRegex.FindString(line)
+		labelMatches := util.LabelRegex.FindStringSubmatch(line)
 
-		if labelMatches == "" {
+		if len(labelMatches) == 0 {
 			continue
 		}
 
-		labelMatches = labelMatches[:len(labelMatches)-1] // FindString still returns the trailing ":", this removes it
-
 		// adding 1 so that i can tell when a label
 		// is defined on the first line vs not at all
-		symbolTable[labelMatches] = idx + 1
+		symbolTable[labelMatches[1]] = idx + 1
 	}
 
 	return symbolTable, nil
