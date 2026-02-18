@@ -13,6 +13,7 @@ func main() {
 	var outputPath string
 	flag.StringVar(&inputPath, "input", "input.nyan", "the file to assemble")
 	flag.StringVar(&outputPath, "output", "output.nyobj", "the output path of the object file")
+	flag.Parse()
 
 	StartAssembly(inputPath, outputPath)
 }
