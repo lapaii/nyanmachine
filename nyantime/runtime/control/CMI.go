@@ -28,11 +28,8 @@ func CMI(r *registers.Registers, operator shared.Operator, program *[]shared.Ins
 	secondValueToLoad := (*program)[parsedValue].Operator
 	actualValueToCompare, err := util.ParseOperator(secondValueToLoad)
 
-	if r.GetAccumulator() == actualValueToCompare {
-		r.SetCompareResult(true)
-	} else {
-		r.SetCompareResult(false)
-	}
+	r.SetEqualFlag(r.GetAccumulator() == actualValueToCompare)
+	r.SetGreaterThanFlag(r.GetAccumulator() > actualValueToCompare)
 
 	return nil
 }

@@ -11,11 +11,11 @@ you are viewing this on the extra branch!
 ## planned additions
 
 - reworking jump-on-condition instructions:
-  - renaming JPE -> JE
-  - renaming JPN -> JNE
+  - ✅ renaming JPE -> JE
+  - ✅ renaming JPN -> JNE
   - adding JGE (jump greater equal)
   - adding JLE (jump less equal)
-- add CMX instruction (compare ACC with value of IDX register)
+- ✅ add CMX instruction (compare operator with IDX register)
 - allow direct reading and manipulation of the PC register
 - add MUL, DIV (integer division), MOD instructions
 - add more general purpose registers (R1-9)

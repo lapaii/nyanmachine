@@ -13,7 +13,7 @@ func JNE(r *registers.Registers, operator shared.Operator, program *[]shared.Ins
 		return err
 	}
 
-	if r.GetCompareResult() == false {
+	if r.GetEqualFlag() == false {
 		r.SetPC(parsedOperator - 1) // have to set one lower because it increments by one afterwards
 	}
 

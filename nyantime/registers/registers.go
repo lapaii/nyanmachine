@@ -1,10 +1,17 @@
 package registers
 
+type Flags uint8
+
+const (
+	Equal       Flags = 1 << iota // 1
+	GreaterThan                   // 2
+)
+
 type Registers struct {
 	programCounter int
 	accumulator    int
 	indexRegister  int
-	compareResult  bool
+	flags          Flags
 }
 
 func NewRegisters() Registers {
@@ -12,6 +19,6 @@ func NewRegisters() Registers {
 		programCounter: 0,
 		accumulator:    0,
 		indexRegister:  0,
-		compareResult:  false,
+		flags:          0,
 	}
 }

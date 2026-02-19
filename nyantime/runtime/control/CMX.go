@@ -16,11 +16,8 @@ func CMX(r *registers.Registers, operator shared.Operator, program *[]shared.Ins
 		return err
 	}
 
-	if r.GetIndex() == valueToCompare {
-		r.SetCompareResult(true)
-	} else {
-		r.SetCompareResult(false)
-	}
+	r.SetEqualFlag(r.GetIndex() == valueToCompare)
+	r.SetGreaterThanFlag(r.GetIndex() > valueToCompare)
 
 	return nil
 }

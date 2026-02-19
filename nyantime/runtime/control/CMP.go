@@ -16,11 +16,8 @@ func CMP(r *registers.Registers, operator shared.Operator, program *[]shared.Ins
 		return err
 	}
 
-	if r.GetAccumulator() == valueToCompare {
-		r.SetCompareResult(true)
-	} else {
-		r.SetCompareResult(false)
-	}
+	r.SetEqualFlag(r.GetAccumulator() == valueToCompare)
+	r.SetGreaterThanFlag(r.GetAccumulator() > valueToCompare)
 
 	return nil
 }

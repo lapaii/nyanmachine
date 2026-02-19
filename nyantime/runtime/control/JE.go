@@ -13,7 +13,7 @@ func JE(r *registers.Registers, operator shared.Operator, program *[]shared.Inst
 		return err
 	}
 
-	if r.GetCompareResult() == true {
+	if r.GetEqualFlag() == true {
 		r.SetPC(parsedOperator - 1) // have to set one lower because it increments by one afterwards
 	}
 
