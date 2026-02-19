@@ -19,7 +19,7 @@ func STO(r *registers.Registers, operator util.Operator, program *[]util.Instruc
 
 	util.ModifyInstruction(program, parsedOperator, util.Instruction{
 		Operand:  (*program)[parsedOperator].Operand,
-		Operator: util.Operator(fmt.Sprintf("#%d", r.Accumulator)),
+		Operator: util.Operator(fmt.Sprintf("#%d", r.GetAccumulator())),
 	})
 
 	return nil

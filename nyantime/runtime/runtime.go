@@ -6,16 +6,11 @@ import (
 )
 
 func Runtime(decodedProgram []util.Instruction) error {
-	registers := registers.Registers{
-		ProgramCounter: 0,
-		Accumulator:    0,
-		Index:          0,
-	}
-
+	registers := registers.NewRegisters()
 	shouldContinue := true
 
 	for shouldContinue {
-		currentInstruction := decodedProgram[registers.ProgramCounter]
+		currentInstruction := decodedProgram[registers.GetPC()]
 
 		if currentInstruction.Operand == util.END {
 			shouldContinue = false
