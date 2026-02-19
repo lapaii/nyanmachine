@@ -1,11 +1,13 @@
-start: LDD first
+start: LDM #20
 ADD second
 ADD third
 STO total
 OUT // output should be 90
+LDM #10
+OUT // line return so no weird %
 END
 
 first: DAT #20
-second: DAT #30
-third: DAT #40
+second: DAT #40
+third: DAT #5
 total: DAT #0
