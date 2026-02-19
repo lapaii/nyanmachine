@@ -9,10 +9,12 @@ import (
 	"strings"
 )
 
+// function is rather "messy", should get cleaned up some time
 func SecondPass(contents []string, symbolTable firstpass.SymbolTable) ([]Instruction, error) {
 	var outputProgram []Instruction
 
 	numberOperator := regexp.MustCompile(`(#[0-9]+)|(B[0-1]+)|(\^[0-9A-F]+)`)
+	rawNumberOperator := regexp.MustCompile(`([0-9]+)`)
 
 	for idx, line := range contents {
 		// stuff this step does
@@ -91,6 +93,58 @@ func SecondPass(contents []string, symbolTable firstpass.SymbolTable) ([]Instruc
 
 		// now we are dealing with only instructions
 		// that use numbers / addresses (or labels to represent either of those)
+
+		// instruction can only take defined numbers
+		if slices.Contains(NumberOperator, operand) {
+			// this operator is a number
+			if numberOperator.MatchString(operator) {
+				outputProgram = append(outputProgram, Instruction{
+					Operand:  operand,
+					Operator: Operator(operator),
+				})
+
+				continue
+			}
+
+			return []Instruction{}, fmt.Errorf("operator on line %d isn't a defined number! %s", idx, line)
+		}
+
+		// instruction can only take addresses
+		if slices.Contains(AddressOperator, operand) {
+			// operator is a defined number, not allowed
+			if numberOperator.MatchString(operator) {
+				return []Instruction{}, fmt.Errorf("operator on line %d isn't an address! %s", idx, line)
+			}
+
+			// operator is a "raw" address, i.e. LDD 5 <- load operator at address 5
+			if rawNumberOperator.MatchString(operator) {
+				// just add to output
+				outputProgram = append(outputProgram, Instruction{
+					Operand:  operand,
+					Operator: Operator(operator),
+				})
+
+				continue
+			}
+
+			// operator must be a label now
+			symbolTableLine := symbolTable[operator]
+
+			// operator isnt in symbol table
+			if symbolTableLine == 0 {
+				return []Instruction{}, fmt.Errorf("%s is used as a symbol but isn't defined at all! line %d", operator, idx)
+			}
+
+			// label is properly defined and used
+			outputProgram = append(outputProgram, Instruction{
+				Operand:  operand,
+				Operator: Operator(strconv.Itoa(symbolTableLine - 1)),
+			})
+
+			continue
+		}
+
+		// instruction can take either user defined number or an address
 		if numberOperator.MatchString(operator) {
 			outputProgram = append(outputProgram, Instruction{
 				Operand:  operand,
@@ -100,7 +154,19 @@ func SecondPass(contents []string, symbolTable firstpass.SymbolTable) ([]Instruc
 			continue
 		}
 
-		// not a number, at this point it must be a label
+		// not a defined number, at this point it must be an address
+		// operator is a "raw" address
+		if rawNumberOperator.MatchString(operator) {
+			// just add to output
+			outputProgram = append(outputProgram, Instruction{
+				Operand:  operand,
+				Operator: Operator(operator),
+			})
+
+			continue
+		}
+
+		// must be a label now
 		symbolTableLine := symbolTable[operator]
 
 		// operator isnt in symbol table

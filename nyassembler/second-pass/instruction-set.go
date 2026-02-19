@@ -79,3 +79,11 @@ var NoOperator = []Operand{IN, OUT, END}
 
 // list of instructions which the operator needs to be a register (ACC or IDX)
 var RegisterOperator = []Operand{MOV, INC, DEC}
+
+// list of instructions that require a user defined number as the operator (#/B/&)
+var NumberOperator = []Operand{LDM, LDR, LSL, LSR}
+
+// list of instructions that require addresses
+var AddressOperator = []Operand{LDD, LDI, LDX, STO, JMP, CMI, JPE, JPN}
+
+// all other instructions can be either defined number or address
