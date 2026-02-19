@@ -1,0 +1,14 @@
+LDD first_val
+CMI compare
+JPE true
+JPN false
+true: LDM #65
+OUT
+END
+
+false: LDM #66
+OUT
+END
+
+first_val: DAT #10
+compare: DAT first_val

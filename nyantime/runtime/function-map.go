@@ -12,7 +12,7 @@ import (
 var FunctionMap = map[util.Operand]func(*registers.Registers, util.Operator, *[]util.Instruction) error{
 	util.LDM: memory.LDM,
 	util.LDD: memory.LDD,
-	// util.LDI
+	util.LDI: memory.LDI,
 	util.LDX: memory.LDX,
 	util.LDR: memory.LDR,
 	util.MOV: memory.MOV,
@@ -25,7 +25,7 @@ var FunctionMap = map[util.Operand]func(*registers.Registers, util.Operator, *[]
 
 	util.JMP: control.JMP,
 	util.CMP: control.CMP,
-	// util.CMI
+	util.CMI: control.CMI,
 	util.JPE: control.JPE,
 	util.JPN: control.JPN,
 	// util.IN

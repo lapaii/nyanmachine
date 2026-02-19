@@ -8,7 +8,7 @@ import (
 
 func main() {
 	var programPath string
-	flag.StringVar(&programPath, "program", "../test-programs/print-a-string.nyobj", "the assembled file to run")
+	flag.StringVar(&programPath, "program", "../test-programs/cmi-example.nyobj", "the assembled file to run")
 	flag.Parse()
 
 	contents, err := OpenFile(programPath)
