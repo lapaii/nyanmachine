@@ -2,7 +2,7 @@ start: LDD first
 ADD second
 ADD third
 STO total
-OUT // output should be 100
+OUT // output should be 90
 END
 
 first: DAT #20
