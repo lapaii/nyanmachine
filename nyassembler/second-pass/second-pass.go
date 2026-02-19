@@ -77,10 +77,10 @@ func SecondPass(contents []string, symbolTable firstpass.SymbolTable) ([]shared.
 
 		operator := lineParts[operandIndex+1]
 
-		// operand requires a register for the operator (ACC or IDX)
+		// operand requires a register for the operator (ACC, IDX or PC)
 		if slices.Contains(shared.RegisterOperator, operand) {
 			// is it a register?
-			if operator != "ACC" && operator != "IDX" {
+			if operator != "ACC" && operator != "IDX" && operator != "PC" {
 				return []shared.Instruction{}, fmt.Errorf("operator on line %d isn't a register! %s", idx, line)
 			}
 

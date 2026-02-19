@@ -8,6 +8,10 @@ func (r *Registers) SetPC(value int) {
 	r.programCounter = value
 }
 
-func (r *Registers) IncrementPC() {
-	r.programCounter = r.programCounter + 1
+func (r *Registers) IncrementPC(value int) {
+	r.programCounter = r.programCounter + value
+}
+
+func (r *Registers) DecrementPC(value int) {
+	r.programCounter = r.programCounter - value
 }

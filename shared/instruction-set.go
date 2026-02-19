@@ -91,7 +91,7 @@ var InstructionSet = map[string]Operand{
 // list of instructions that dont use an operator
 var NoOperator = []Operand{IN, OUT, END}
 
-// list of instructions which the operator needs to be a register (ACC or IDX)
+// list of instructions which the operator needs to be a register (ACC, IDX or PC)
 var RegisterOperator = []Operand{MOV, INC, DEC}
 
 // list of instructions that require a user defined number as the operator (#/B/&)

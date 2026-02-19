@@ -14,6 +14,11 @@ func MOV(r *registers.Registers, operator shared.Operator, program *[]shared.Ins
 		r.SetIndex(accValue)
 	}
 
+	if parsedOperator == "PC" {
+		accValue := r.GetAccumulator()
+		r.SetPC(accValue)
+	}
+
 	// no point doing anything if its ACC, as the value of ACC is already there???
 
 	return nil

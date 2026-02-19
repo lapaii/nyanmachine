@@ -24,7 +24,7 @@ func Runtime(decodedProgram []shared.Instruction) error {
 			return fmt.Errorf("failed on instruction: %+v\nerror: %s", currentInstruction, err.Error())
 		}
 
-		registers.IncrementPC()
+		registers.IncrementPC(1)
 	}
 
 	return nil

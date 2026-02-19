@@ -17,5 +17,9 @@ func DEC(r *registers.Registers, operator shared.Operator, program *[]shared.Ins
 		r.DecrementAccumulator(1)
 	}
 
+	if parsedOperator == "PC" {
+		r.DecrementPC(1)
+	}
+
 	return nil
 }

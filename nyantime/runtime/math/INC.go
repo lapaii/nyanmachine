@@ -17,5 +17,9 @@ func INC(r *registers.Registers, operator shared.Operator, program *[]shared.Ins
 		r.IncrementAccumulator(1)
 	}
 
+	if parsedOperator == "PC" {
+		r.IncrementPC(1)
+	}
+
 	return nil
 }
