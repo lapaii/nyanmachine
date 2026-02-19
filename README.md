@@ -17,6 +17,7 @@ you are viewing this on the extra branch!
   - ✅ adding JLE (jump less equal)
 - ✅ add CMX instruction (compare operator with IDX register)
 - function calls!!
+- OUTD instruction, output contents of ACC as a denary number instead of ascii
 - allow direct reading and manipulation of the PC register
 - add MUL, DIV (integer division), MOD instructions
 - add more general purpose registers (R1-9)

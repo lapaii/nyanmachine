@@ -47,6 +47,7 @@ const (
 	JLE
 	IN
 	OUT
+	OUTD
 	END
 
 	// bitwise operations
@@ -58,38 +59,39 @@ const (
 )
 
 var InstructionSet = map[string]Operand{
-	"LDM": LDM,
-	"LDD": LDD,
-	"LDI": LDI,
-	"LDX": LDX,
-	"LDR": LDR,
-	"MOV": MOV,
-	"STO": STO,
-	"DAT": DAT,
-	"ADD": ADD,
-	"SUB": SUB,
-	"INC": INC,
-	"DEC": DEC,
-	"JMP": JMP,
-	"CMP": CMP,
-	"CMX": CMX,
-	"CMI": CMI,
-	"JE":  JE,
-	"JNE": JNE,
-	"JGE": JGE,
-	"JLE": JLE,
-	"IN":  IN,
-	"OUT": OUT,
-	"END": END,
-	"AND": AND,
-	"XOR": XOR,
-	"OR":  OR,
-	"LSL": LSL,
-	"LSR": LSR,
+	"LDM":  LDM,
+	"LDD":  LDD,
+	"LDI":  LDI,
+	"LDX":  LDX,
+	"LDR":  LDR,
+	"MOV":  MOV,
+	"STO":  STO,
+	"DAT":  DAT,
+	"ADD":  ADD,
+	"SUB":  SUB,
+	"INC":  INC,
+	"DEC":  DEC,
+	"JMP":  JMP,
+	"CMP":  CMP,
+	"CMX":  CMX,
+	"CMI":  CMI,
+	"JE":   JE,
+	"JNE":  JNE,
+	"JGE":  JGE,
+	"JLE":  JLE,
+	"IN":   IN,
+	"OUT":  OUT,
+	"OUTD": OUTD,
+	"END":  END,
+	"AND":  AND,
+	"XOR":  XOR,
+	"OR":   OR,
+	"LSL":  LSL,
+	"LSR":  LSR,
 }
 
 // list of instructions that dont use an operator
-var NoOperator = []Operand{IN, OUT, END}
+var NoOperator = []Operand{IN, OUT, OUTD, END}
 
 // list of instructions which the operator needs to be a register (ACC, IDX or PC)
 var RegisterOperator = []Operand{MOV, INC, DEC}
