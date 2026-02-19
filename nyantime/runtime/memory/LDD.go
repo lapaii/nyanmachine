@@ -6,10 +6,18 @@ import (
 )
 
 func LDD(r *registers.Registers, operator util.Operator, program *[]util.Instruction) error {
-	// operator is an address in this instruction so
-	// i know its just a line number i can index to
+	// operator is an address in this instruction
 
-	parsedValue, err := util.ParseOperator(operator, *program)
+	// parsedOperator is the address to load from
+	parsedOperator, err := util.ParseOperator(operator)
+
+	if err != nil {
+		return err
+	}
+
+	valueToLoad := (*program)[parsedOperator].Operator
+
+	parsedValue, err := util.ParseOperator(valueToLoad)
 
 	if err != nil {
 		return err

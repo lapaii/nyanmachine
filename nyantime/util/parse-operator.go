@@ -4,7 +4,7 @@ import (
 	"strconv"
 )
 
-func ParseOperator(operator Operator, program []Instruction) (int, error) {
+func ParseOperator(operator Operator) (int, error) {
 	numberBase := -1
 
 	switch operator[0] {
@@ -16,15 +16,15 @@ func ParseOperator(operator Operator, program []Instruction) (int, error) {
 		numberBase = 16
 	}
 
-	// operator is a label
+	// operator is a label, return just the line number it means, i will load that in the instructions
 	if numberBase == -1 {
-		parsedOperator, err := strconv.Atoi(string(operator))
+		conv, err := strconv.Atoi(string(operator))
 
 		if err != nil {
 			return 0, err
 		}
 
-		return ParseOperator(program[parsedOperator].Operator, program)
+		return conv, nil
 	}
 
 	conv, err := strconv.ParseInt(string(operator)[1:], numberBase, 0)

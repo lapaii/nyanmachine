@@ -1,18 +1,18 @@
-package memory
+package math
 
 import (
 	"nyantime/registers"
 	"nyantime/util"
 )
 
-func LDM(r *registers.Registers, operator util.Operator, program *[]util.Instruction) error {
+func SUB(r *registers.Registers, operator util.Operator, program *[]util.Instruction) error {
 	parsedOperator, err := util.ParseOperator(operator)
 
 	if err != nil {
 		return err
 	}
 
-	r.SetAccumulator(parsedOperator)
+	r.DecrementAccumulator(parsedOperator)
 
 	return nil
 }

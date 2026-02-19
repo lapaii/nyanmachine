@@ -11,3 +11,7 @@ func (r *Registers) SetAccumulator(value int) {
 func (r *Registers) IncrementAccumulator(value int) {
 	r.accumulator = r.accumulator + value
 }
+
+func (r *Registers) DecrementAccumulator(value int) {
+	r.accumulator = r.accumulator - value
+}

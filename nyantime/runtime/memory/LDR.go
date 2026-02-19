@@ -5,14 +5,14 @@ import (
 	"nyantime/util"
 )
 
-func LDM(r *registers.Registers, operator util.Operator, program *[]util.Instruction) error {
+func LDR(r *registers.Registers, operator util.Operator, program *[]util.Instruction) error {
 	parsedOperator, err := util.ParseOperator(operator)
 
 	if err != nil {
 		return err
 	}
 
-	r.SetAccumulator(parsedOperator)
+	r.SetIndex(parsedOperator)
 
 	return nil
 }
