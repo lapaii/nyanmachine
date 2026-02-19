@@ -2,6 +2,7 @@ package runtime
 
 import (
 	"nyantime/registers"
+	"nyantime/runtime/bitwise"
 	"nyantime/runtime/control"
 	"nyantime/runtime/math"
 	"nyantime/runtime/memory"
@@ -30,9 +31,9 @@ var FunctionMap = map[util.Operand]func(*registers.Registers, util.Operator, *[]
 	// util.IN
 	util.OUT: control.OUT,
 
-	// util.AND
-	// util.XOR
-	// util.OR
-	// util.LSL
-	// util.LSR
+	util.AND: bitwise.AND,
+	util.XOR: bitwise.XOR,
+	util.OR:  bitwise.OR,
+	util.LSL: bitwise.LSL,
+	util.LSR: bitwise.LSR,
 }

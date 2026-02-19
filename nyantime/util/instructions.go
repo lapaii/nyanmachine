@@ -46,7 +46,7 @@ const (
 	OUT
 	END
 
-	// logic operations
+	// bitwise operations
 	AND
 	XOR
 	OR
