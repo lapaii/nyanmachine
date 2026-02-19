@@ -13,3 +13,7 @@ func (r *Registers) IncrementPC() {
 func (r *Registers) SetAccumulator(value int) {
 	r.Accumulator = value
 }
+
+func (r *Registers) IncrementAccumulator(value int) {
+	r.Accumulator = r.Accumulator + value
+}

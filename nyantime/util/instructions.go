@@ -8,6 +8,14 @@ type Instruction struct {
 	Operator Operator
 }
 
+func ModifyInstruction(instructions *[]Instruction, index int, newInstruction Instruction) {
+	(*instructions)[index] = newInstruction
+}
+
+func (inst *Instruction) ModifyOperator(newOperator string) {
+	inst.Operator = Operator(newOperator)
+}
+
 const (
 	INVALID Operand = iota
 
