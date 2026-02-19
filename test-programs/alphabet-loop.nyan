@@ -1,0 +1,10 @@
+loop: LDD start_index
+OUT
+ADD #1
+STO start_index
+CMP end_index
+JPN loop
+END
+
+end_index: DAT #91
+start_index: DAT #65
