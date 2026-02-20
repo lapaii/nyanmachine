@@ -20,9 +20,11 @@ parameter size: all registers and stuff is 32-bit
 registers are to be prefixed with a %
 immediate values prefixed with $, can define decimal numbers ($95) or hex numbers ($0x5F)
 
+to treat the value of an operand as a pointer, surround it with []
+
 ## (WIP) instruction table
 
-| opcode | operator    | explanation                                          |
+| opcode | operand     | explanation                                          |
 | ------ | ----------- | ---------------------------------------------------- |
 | mov    | src, target | move from value to r1                                |
 | add    | src, target | add value to r1                                      |
