@@ -1,7 +1,0 @@
-IN // this just takes an input and prints it right back out
-OUT
-
-LDM #10
-OUT
-
-END

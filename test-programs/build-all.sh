@@ -7,15 +7,15 @@ set -euo pipefail
 
 # locate the nyassembler directory relative to this script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-NYASM_DIR="${SCRIPT_DIR}/../nyassembler"
+NYASSEMBLER_DIR="${SCRIPT_DIR}/../nyassembler"
 
 # build the assembler
-echo "Building nyassembler in ${NYASM_DIR}..."
-cd "${NYASM_DIR}"
+echo "Building nyassembler in ${NYASSEMBLER_DIR}..."
+cd "${NYASSEMBLER_DIR}"
 go build .
 
 # path to assembler executable
-NYASM_EXEC="${NYASM_DIR}/nyassembler"
+NYASSEMBLER_EXEC="${NYASSEMBLER_DIR}/nyassembler"
 
 # go back to test-programs directory
 cd "${SCRIPT_DIR}"
@@ -23,14 +23,10 @@ cd "${SCRIPT_DIR}"
 echo "Processing .nyan files in ${SCRIPT_DIR}..."
 
 shopt -s nullglob
-for src in *.nyan; do
-    # skip the script itself if somehow named .nyan
-    if [[ "$src" == "build-all.sh" ]]; then
-        continue
-    fi
-    out="${src%.nyan}.nyobj"
+for src in *.nyasm; do
+    out="${src%.nyasm}.nyobj"
     echo "  assembling $src -> $out"
-    "${NYASM_EXEC}" --input "$src" --output "$out"
+    "${NYASSEMBLER_EXEC}" --input "$src" --output "$out"
 done
 
 echo "Done."

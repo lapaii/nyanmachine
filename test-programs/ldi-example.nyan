@@ -1,6 +1,0 @@
-LDI first_val
-OUT // should output A
-END
-
-first_val: DAT second_val // address of second_val
-second_val: DAT #65
