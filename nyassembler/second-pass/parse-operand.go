@@ -5,15 +5,15 @@ import (
 	"shared"
 )
 
-func ParseOperand(input string, lineNum int) (shared.Operand, error) {
-	var operand shared.Operand
+func ParseOpcode(input string, lineNum int) (shared.Opcode, error) {
+	var opcode shared.Opcode
 	var returnError error = nil
 
-	operand = shared.InstructionSet[input]
+	opcode = shared.InstructionSet[input]
 
-	if operand == shared.INVALID {
+	if opcode == shared.INVALID {
 		returnError = fmt.Errorf("Invalid instruction at Line %d: %s", lineNum+1, input)
 	}
 
-	return operand, returnError
+	return opcode, returnError
 }

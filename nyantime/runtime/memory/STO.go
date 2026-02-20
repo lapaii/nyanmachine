@@ -18,7 +18,7 @@ func STO(r *registers.Registers, operator shared.Operator, program *[]shared.Ins
 	}
 
 	shared.ModifyInstruction(program, parsedOperator, shared.Instruction{
-		Operand:  (*program)[parsedOperator].Operand,
+		Opcode:   (*program)[parsedOperator].Opcode,
 		Operator: shared.Operator(fmt.Sprintf("#%d", r.GetAccumulator())),
 	})
 

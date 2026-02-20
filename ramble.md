@@ -58,7 +58,7 @@ on the second pass:
 
 ```go
 type Instruction struct {
-  Operand int // will be later decoded back into instructions that are useful
+  Opcode int // will be later decoded back into instructions that are useful
   Operator int // Numbr .
 }
 ```

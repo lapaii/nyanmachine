@@ -9,7 +9,7 @@ import (
 	"shared"
 )
 
-var FunctionMap = map[shared.Operand]func(*registers.Registers, shared.Operator, *[]shared.Instruction) error{
+var FunctionMap = map[shared.Opcode]func(*registers.Registers, shared.Operator, *[]shared.Instruction) error{
 	shared.LDM: memory.LDM,
 	shared.LDD: memory.LDD,
 	shared.LDI: memory.LDI,

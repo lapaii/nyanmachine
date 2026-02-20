@@ -11,11 +11,11 @@ func DecodeInstructions(program []byte) []shared.Instruction {
 	outputProgram := []shared.Instruction{}
 
 	for _, inst := range instructions {
-		operand := inst[0]
+		opcode := inst[0]
 		operator := inst[1:]
 
 		outputProgram = append(outputProgram, shared.Instruction{
-			Operand:  shared.Operand(operand),
+			Opcode:   shared.Opcode(opcode),
 			Operator: shared.Operator(operator),
 		})
 	}

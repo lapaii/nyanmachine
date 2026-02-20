@@ -1,10 +1,10 @@
 package shared
 
-type Operand uint8
+type Opcode uint8
 type Operator string
 
 type Instruction struct {
-	Operand  Operand
+	Opcode   Opcode
 	Operator Operator
 }
 
@@ -17,7 +17,7 @@ func (inst *Instruction) ModifyOperator(newOperator string) {
 }
 
 const (
-	INVALID Operand = iota
+	INVALID Opcode = iota
 
 	// memory instructions
 	LDM
@@ -58,7 +58,7 @@ const (
 	LSR
 )
 
-var InstructionSet = map[string]Operand{
+var InstructionSet = map[string]Opcode{
 	"LDM":  LDM,
 	"LDD":  LDD,
 	"LDI":  LDI,
@@ -91,15 +91,15 @@ var InstructionSet = map[string]Operand{
 }
 
 // list of instructions that dont use an operator
-var NoOperator = []Operand{IN, OUT, OUTD, END}
+var NoOperator = []Opcode{IN, OUT, OUTD, END}
 
 // list of instructions which the operator needs to be a register (ACC, IDX or PC)
-var RegisterOperator = []Operand{MOV, INC, DEC}
+var RegisterOperator = []Opcode{MOV, INC, DEC}
 
 // list of instructions that require a user defined number as the operator (#/B/&)
-var NumberOperator = []Operand{LDM, LDR, LSL, LSR}
+var NumberOperator = []Opcode{LDM, LDR, LSL, LSR}
 
 // list of instructions that require addresses
-var AddressOperator = []Operand{LDD, LDI, LDX, STO, JMP, CMI, JE, JNE}
+var AddressOperator = []Opcode{LDD, LDI, LDX, STO, JMP, CMI, JE, JNE}
 
 // all other instructions can be either defined number or address
