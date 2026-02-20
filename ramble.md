@@ -1,5 +1,31 @@
 # my rambles
 
+## new based swag rambles
+
+with the new spec bringing support for multi operand instructions, i need to rethink my assembler and binary format a little bit
+
+definition below for the binary format
+
+instructions are encoded in 2 bytes like so:
+
+bits 0-1: source type
+bits 2-3: target type
+bits 4-8: opcode
+bits 9-15: currently unused
+
+| 15 - 9 | 8 - 4  | 3 - 2       | 1 - 0       |
+| ------ | ------ | ----------- | ----------- |
+| unused | opcode | target type | source type |
+
+operand types:
+
+00 -> register (8 bits)
+01 -> register pointer (8 bits) (when running the instruction, the value of register is treated as an address to do the something to)
+10 -> immediate (32 bit)
+11 -> immediate pointer (32 bit) (can be just user defined number or a number thats been replaced because it was a label)
+
+## OLD RAMBLES
+
 basically going to cmd+a delete everything
 
 instead of being treated like an interpreter, im going to actually assemble the source code into object programs.
