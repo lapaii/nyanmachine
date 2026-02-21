@@ -66,7 +66,7 @@ i dont _see_ this expanding in the future, but you never know!
 | add    | dest, addend        | addend + dest and stores in dest                                            |
 | sub    | dest, src           | dest = dest - src                                                           |
 | mul    | dest, src           | dest = dest \* src                                                          |
-| div    | dest, src           | integer divide (dest = src / dest)                                          |
+| div    | dest, src           | integer divide (dest = dest / src)                                          |
 | mod    | dest, src           | dest = src mod dest                                                         |
 | and    | dest, mask          | bitwise AND both operands and store in dest                                 |
 | not    | arg                 | bitwise NOT arg                                                             |
