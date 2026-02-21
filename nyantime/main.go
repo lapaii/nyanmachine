@@ -4,12 +4,12 @@ import (
 	"flag"
 	"fmt"
 	"nyantime/decoder"
-	"nyantime/runtime"
+	"nyantime/util"
 )
 
 func main() {
 	var programPath string
-	flag.StringVar(&programPath, "program", "", "the assembled file to run")
+	flag.StringVar(&programPath, "program", "../test-programs/add-3-nums.nyobj", "the assembled file to run")
 	flag.Parse()
 
 	if programPath == "" {
@@ -17,17 +17,17 @@ func main() {
 		return
 	}
 
-	contents, err := OpenFile(programPath)
+	contents, err := util.OpenFile(programPath)
 
 	if err != nil {
 		panic(err)
 	}
 
-	decoded := decoder.DecodeInstructions(contents)
-
-	err = runtime.Runtime(decoded)
+	_, err = decoder.DecodeBinary(contents)
 
 	if err != nil {
 		panic(err)
 	}
+
+	// fmt.Println(decoded)
 }
