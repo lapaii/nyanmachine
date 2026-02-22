@@ -1,25 +1,13 @@
 package registers
 
-func (r *Registers) SetEqualFlag(value bool) {
+func (r *Registers) SetFlag(value bool, flag Flags) {
 	if value {
-		r.flags = r.flags | Equal // sets equal bit to 1
+		r.flags = r.flags | flag // sets the bit to 1
 	} else {
-		r.flags = r.flags & ^Equal // sets equal bit to 0
+		r.flags = r.flags & ^flag // sets the bit to 0
 	}
 }
 
-func (r *Registers) GetEqualFlag() bool {
-	return r.flags&Equal == Equal
-}
-
-func (r *Registers) SetGreaterThanFlag(value bool) {
-	if value {
-		r.flags = r.flags | GreaterThan // sets gt bit to 1
-	} else {
-		r.flags = r.flags & ^GreaterThan // sets gt bit to 0
-	}
-}
-
-func (r *Registers) GetGreaterThanFlag() bool {
-	return r.flags&GreaterThan == GreaterThan
+func (r *Registers) GetFlag(flag Flags) bool {
+	return r.flags&flag == flag
 }

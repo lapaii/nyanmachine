@@ -31,40 +31,40 @@ func (inst *Instruction) ModifyOperator(newOperator string) {
 const (
 	INVALID Opcode = iota
 
-	mov
+	Mov
 
-	add
-	sub
-	mul
-	div
-	mod
+	Add
+	Sub
+	Mul
+	Div
+	Mod
 
-	and
-	not
-	xor
-	or
-	shr
-	shl
+	And
+	Not
+	Xor
+	Or
+	Shr
+	Shl
 
-	jmp
-	cmp
-	je
-	jne
-	jz
-	jnz
-	jge
-	jg
-	jle
-	jl
+	Jmp
+	Cmp
+	Je
+	Jne
+	Jz
+	Jnz
+	Jge
+	Jg
+	Jle
+	Jl
 
-	in
-	out
-	outd
-	end
-	call
-	ret
+	In
+	Out
+	Outd
+	End
+	Call
+	Ret
 
-	dn
+	Dn
 )
 
 type OpcodeInfo struct {
@@ -74,131 +74,131 @@ type OpcodeInfo struct {
 
 var InstructionSet = map[string]OpcodeInfo{
 	"mov": {
-		Opcode:     mov,
+		Opcode:     Mov,
 		NumOperand: 2,
 	},
 	"add": {
-		Opcode:     add,
+		Opcode:     Add,
 		NumOperand: 2,
 	},
 	"sub": {
-		Opcode:     sub,
+		Opcode:     Sub,
 		NumOperand: 2,
 	},
 	"mul": {
-		Opcode:     mul,
+		Opcode:     Mul,
 		NumOperand: 2,
 	},
 	"div": {
-		Opcode:     div,
+		Opcode:     Div,
 		NumOperand: 2,
 	},
 	"mod": {
-		Opcode:     mod,
+		Opcode:     Mod,
 		NumOperand: 2,
 	},
 	"and": {
-		Opcode:     and,
+		Opcode:     And,
 		NumOperand: 2,
 	},
 	"not": {
-		Opcode:     not,
+		Opcode:     Not,
 		NumOperand: 1,
 	},
 	"xor": {
-		Opcode:     xor,
+		Opcode:     Xor,
 		NumOperand: 2,
 	},
 	"or": {
-		Opcode:     or,
+		Opcode:     Or,
 		NumOperand: 2,
 	},
 	"shr": {
-		Opcode:     shr,
+		Opcode:     Shr,
 		NumOperand: 2,
 	},
 	"shl": {
-		Opcode:     shl,
+		Opcode:     Shl,
 		NumOperand: 2,
 	},
 	"jmp": {
-		Opcode:     jmp,
+		Opcode:     Jmp,
 		NumOperand: 1,
 	},
 	"cmp": {
-		Opcode:     cmp,
+		Opcode:     Cmp,
 		NumOperand: 2,
 	},
 	"je": {
-		Opcode:     je,
+		Opcode:     Je,
 		NumOperand: 1,
 	},
 	"jne": {
-		Opcode:     jne,
+		Opcode:     Jne,
 		NumOperand: 1,
 	},
 	"jz": {
-		Opcode:     jz,
+		Opcode:     Jz,
 		NumOperand: 1,
 	},
 	"jnz": {
-		Opcode:     jnz,
+		Opcode:     Jnz,
 		NumOperand: 1,
 	},
 	"jge": {
-		Opcode:     jge,
+		Opcode:     Jge,
 		NumOperand: 1,
 	},
 	"jg": {
-		Opcode:     jg,
+		Opcode:     Jg,
 		NumOperand: 1,
 	},
 	"jle": {
-		Opcode:     jle,
+		Opcode:     Jle,
 		NumOperand: 1,
 	},
 	"jl": {
-		Opcode:     jl,
+		Opcode:     Jl,
 		NumOperand: 1,
 	},
 	"in": {
-		Opcode:     in,
+		Opcode:     In,
 		NumOperand: 1,
 	},
 	"out": {
-		Opcode:     out,
+		Opcode:     Out,
 		NumOperand: 1,
 	},
 	"outd": {
-		Opcode:     outd,
+		Opcode:     Outd,
 		NumOperand: 1,
 	},
 	"end": {
-		Opcode:     end,
+		Opcode:     End,
 		NumOperand: 0,
 	},
 	"call": {
-		Opcode:     call,
+		Opcode:     Call,
 		NumOperand: 1,
 	},
 	"ret": {
-		Opcode:     ret,
+		Opcode:     Ret,
 		NumOperand: 0,
 	},
 	"dn": {
-		Opcode:     dn,
+		Opcode:     Dn,
 		NumOperand: 1,
 	},
 }
 
 // list of instructions that dont use an operand
-var NoOperand = []Opcode{end, ret}
+var NoOperand = []Opcode{End, Ret}
 
 // list of instructions that take 1 operand
-var OneOperand = []Opcode{not, jmp, je, jne, jz, jnz, jge, jg, jle, jl, in, out, outd, call, dn}
+var OneOperand = []Opcode{Not, Jmp, Je, Jne, Jz, Jnz, Jge, Jg, Jle, Jl, In, Out, Outd, Call, Dn}
 
 // list of instructions that take 2 operands
-var TwoOperand = []Opcode{mov, add, sub, mul, div, mod, and, xor, or, shr, shl, cmp}
+var TwoOperand = []Opcode{Mov, Add, Sub, Mul, Div, Mod, And, Xor, Or, Shr, Shl, Cmp}
 
 type RegisterType uint8
 

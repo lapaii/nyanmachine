@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"nyantime/decoder"
+	"nyantime/runtime"
 	"nyantime/util"
 )
 
@@ -23,11 +24,15 @@ func main() {
 		panic(err)
 	}
 
-	_, err = decoder.DecodeBinary(contents)
+	decoded, err := decoder.DecodeBinary(contents)
 
 	if err != nil {
 		panic(err)
 	}
 
-	// fmt.Println(decoded)
+	err = runtime.Runtime(decoded)
+
+	if err != nil {
+		panic(err)
+	}
 }
